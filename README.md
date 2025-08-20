@@ -32,6 +32,24 @@ A basic Discord bot built with TypeScript and Discord.js.
    npm start
    ```
 
+## Docker
+
+### Production
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build and run manually
+docker build -t discord-bot .
+docker run --env-file .env discord-bot
+```
+
+### Development
+```bash
+# Run in development mode with Docker
+docker-compose -f docker-compose.dev.yml up -d
+```
+
 ## Project Structure
 
 ```
