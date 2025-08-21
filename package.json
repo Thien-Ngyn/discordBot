@@ -10,8 +10,12 @@
     "watch": "tsc --watch"
   },
   "keywords": ["discord", "bot", "typescript"],
-  "author": "",
+  "author": "Thien Nguyen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thien-Ngyn/discordBot.git"
+  },
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1"
