@@ -7,10 +7,11 @@ import { config } from '../config/config';
 export class CommandHandler {
   private commands: Collection<string, Command> = new Collection();
   private readonly client: Client;
-  private readonly developerId = '980280431322755082';
+  private readonly developerId: string;
 
   constructor(client: Client) {
     this.client = client;
+    this.developerId = config.developerId;
   }
 
   public async loadCommands(): Promise<void> {
@@ -32,7 +33,6 @@ export class CommandHandler {
             
             if (command.default && this.isValidCommand(command.default)) {
               this.commands.set(command.default.metadata.name, command.default);
-              console.log(`Loaded command: ${command.default.metadata.name} from category: ${category}`);
             }
           } catch (error) {
             console.error(`Error loading command from ${file}:`, error);
@@ -40,7 +40,7 @@ export class CommandHandler {
         }
       }
 
-      console.log(`Successfully loaded ${this.commands.size} commands`);
+
     } catch (error) {
       console.error('Error loading commands:', error);
       throw error;

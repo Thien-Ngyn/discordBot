@@ -7,21 +7,13 @@ class InteractionCreateEvent implements Event<typeof Events.InteractionCreate> {
   once = false;
 
   async execute(client: Client, interaction: Interaction): Promise<void> {
-    console.log(`Interaction received: ${interaction.type}`);
-    
     if (!interaction.isChatInputCommand()) {
-      console.log('Interaction is not a chat input command');
       return;
     }
-
-    console.log(`Command interaction: ${interaction.commandName}`);
     
-    const commandHandler = (client as any).commandHandler as CommandHandler;
-    if (commandHandler) {
-      console.log('Command handler found, executing command');
-      await commandHandler.handleInteraction(interaction);
-    } else {
-      console.log('Command handler not found');
+    const discordClient = client as any;
+    if (discordClient.commandHandler) {
+      await discordClient.commandHandler.handleInteraction(interaction);
     }
   }
 }

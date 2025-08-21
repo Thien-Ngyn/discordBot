@@ -5,10 +5,12 @@ dotenv.config();
 
 export interface BotConfig {
   token: string;
+  developerId: string;
 }
 
 export const config: BotConfig = {
   token: process.env.DISCORD_TOKEN || '',
+  developerId: '980280431322755082',
 };
 
 // Validate required configuration

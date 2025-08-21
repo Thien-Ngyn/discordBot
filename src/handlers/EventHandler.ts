@@ -29,14 +29,13 @@ export class EventHandler {
           
           if (event.default && this.isValidEvent(event.default)) {
             this.events.set(event.default.name, event.default);
-            console.log(`Loaded event: ${event.default.name}`);
           }
         } catch (error) {
           console.error(`Error loading event from ${file}:`, error);
         }
       }
 
-      console.log(`Successfully loaded ${this.events.size} events`);
+
     } catch (error) {
       console.error('Error loading events:', error);
       throw error;
@@ -60,7 +59,7 @@ export class EventHandler {
         }
       }
 
-      console.log(`Successfully registered ${this.events.size} events`);
+
     } catch (error) {
       console.error('Error registering events:', error);
       throw error;
