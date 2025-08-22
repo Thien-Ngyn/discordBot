@@ -1,11 +1,11 @@
-import { DiscordClient } from './client/DiscordClient';
+import { ShardingManager } from './ShardingManager';
 
 async function main(): Promise<void> {
   try {
-    const client = new DiscordClient();
-    await client.start();
+    const shardingManager = new ShardingManager();
+    await shardingManager.spawn();
   } catch (error) {
-    console.error('Failed to start application:', error);
+    console.error('Failed to start sharding manager:', error);
     process.exit(1);
   }
 }
@@ -21,6 +21,6 @@ process.on('SIGTERM', () => {
   process.exit(0);
 });
 
-// Start the bot
+// Start the bot with sharding (always)
 main();
 

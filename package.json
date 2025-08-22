@@ -1,7 +1,7 @@
 {
   "name": "discord-bot",
-  "version": "1.0.0",
-  "description": "A basic Discord bot built with TypeScript",
+  "version": "1.0.1",
+  "description": "A Discord bot built with TypeScript",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -10,8 +10,12 @@
     "watch": "tsc --watch"
   },
   "keywords": ["discord", "bot", "typescript"],
-  "author": "",
+  "author": "Thien Nguyen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thien-Ngyn/discordBot.git"
+  },
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1"
