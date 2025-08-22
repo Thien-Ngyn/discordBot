@@ -15,6 +15,8 @@ class DevInfoCommand implements Command {
     .setDescription('Shows detailed bot information for developers');
 
   async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+    const shardInfo = (interaction.client as any).getShardInfo?.() || { id: null, total: null };
+    
     const embed = new EmbedBuilder()
       .setColor(0x0099FF)
       .setTitle('Bot Developer Information')
@@ -32,7 +34,9 @@ class DevInfoCommand implements Command {
         { name: 'Platform', value: `${process.platform} (${process.arch})`, inline: true },
         { name: 'Guild Count', value: interaction.client.guilds.cache.size.toString(), inline: true },
         { name: 'Total Users', value: this.getTotalUsers(interaction.client), inline: true },
-        { name: 'Environment', value: process.env.NODE_ENV || 'development', inline: true }
+        { name: 'Environment', value: process.env.NODE_ENV || 'development', inline: true },
+        { name: 'Shard ID', value: shardInfo.id?.toString() || 'N/A', inline: true },
+        { name: 'Shard Status', value: this.getShardStatus(interaction.client), inline: true }
       )
       .setTimestamp()
       .setFooter({ text: 'Developer Command' });
@@ -67,6 +71,21 @@ class DevInfoCommand implements Command {
       return totalUsers.toLocaleString();
     } catch (error) {
       return 'Unknown';
+    }
+  }
+
+  private getShardStatus(client: any): string {
+    if (!client.shard) return 'Single Instance';
+    
+    const status = client.shard.status;
+    switch (status) {
+      case 0: return 'Ready';
+      case 1: return 'Connecting';
+      case 2: return 'Reconnecting';
+      case 3: return 'Idle';
+      case 4: return 'Nearly';
+      case 5: return 'Disconnected';
+      default: return 'Unknown';
     }
   }
 
